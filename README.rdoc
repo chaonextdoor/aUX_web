@@ -1,16 +1,16 @@
-AppMobi.toolkit
-===============
+== AppMobi.toolkit
+
 
 
 AppMobi.toolkit is a helper library for writing AppMobi apps.
 
-About
-===============
+== About
+
 
 At AppMobi, we use our own tools to build apps and these libraries came out of our internal needs.  
 
-Libaries
-===============
+== Libaries
+
 
 AppMobi.toolkit.scroller 
 * A CSS3 scrolling library.  This allows you to use fixed position headers and footers, scroll veritical and/or horizontal.
@@ -46,8 +46,7 @@ AppMobi.toolkit.css3animate
 * This is a helper function for doing css3 animations.  It allows you to animate the x/y position, opacity and width/height (more properties coming soon).
 
 
-AppMobi.toolkit.scroller
-===============
+== AppMobi.toolkit.scroller
 
 
 To use AppMobi.toolkit.scroller you must do the following
@@ -79,8 +78,9 @@ There are additional configuration options that are passed in as an object param
 	
 	var scroller = new AppMobi.toolkit.scroller("my_div",options);
 
-AppMobi.toolkit.carousel
-=======================
+	
+== AppMobi.toolkit.carousel
+
 
 To use AppMobi.toolkit.scroller you must do the following
 
@@ -113,8 +113,7 @@ There are additional configuration options that are passed in as an object param
 	var carousel = new AppMobi.toolkit.carousel("my_div",options);
 	
 
-AppMobi.toolkit.swipeListener
-=======================
+== AppMobi.toolkit.swipeListener
 
 To use AppMobi.toolkit.swipeListener you must do the following
 
@@ -137,8 +136,7 @@ There are additional configuration options that are passed in as an object param
     var swipe = new AppMobi.toolkit.swipeListener("document",{vthreshold:30,hthreshold:50,callBack:function(dir){console.log(dir)}});
    
 
-AppMobi.toolkit.shakeListener
-=======================
+== AppMobi.toolkit.shakeListener
 
 To use AppMobi.toolkit.shakeListener you must do the following
 
@@ -151,8 +149,8 @@ An optional second parameter is threshold for declaring accelerometer movement a
 	AppMobi.toolkit.shakeListener(function(){console.log("Shake Detected");},10); //More shakes needed to trigger the callback
 	
 	
-AppMobi.toolkit.template
-=======================
+== AppMobi.toolkit.template
+
 
 The template parsing library is John Resig's micro templating, with some fixes and enhancements.  http://ejohn.org/blog/javascript-micro-templating/
 To use AppMobi.toolkit.template you must do the following
@@ -186,8 +184,7 @@ You can pass in an optional object parameter that provides data to be used withi
 
 
 
-AppMobi.toolkit.appMobiSelect
-=======================
+== AppMobi.toolkit.appMobiSelect
 
 Currently, there exists a bug in mobile webkit with -webkit-transform:translate being applied to an element that has &lt;select> elements in it.  The second the translate position is changed, 
 the active box for the select box changes. It could be above or below the actual select box, making the user experience a disaster.  What this does is replaces all select boxes with a custom widget
@@ -211,8 +208,8 @@ boxes into the DOM.
 Currently, you can not theme this, but it will be added soon.
 	
 	
-AppMobi.toolkit.appMobiPassword
-=======================
+== AppMobi.toolkit.appMobiPassword
+
 Currently, there exists a bug in mobile webkit with -webkit-transform:translate being applied to an element that has &lt;input type="password"> elements in it.  The second the translate position is changed, 
 the overlay for the password is in a different position, making it look like another input box appears.  What this does is replaces the password box with an input box that updates the content as it goes with an asterik to simulate a password box
 
@@ -231,10 +228,8 @@ getOldPasswords takes in the id of the element you want to search for password b
  
 Currently, you can not theme the input boxes, but that will be added soon.
   
-  
-  
-AppMobi.toolkit.social
-=======================
+== AppMobi.toolkit.social
+
 This is a wrapper library for making oAuth requests using AppMobi.oauth functions.   Please see the AppMobi.oauth documentation for full details.
  
 To use AppMobi.toolkit.social you must do the following
@@ -263,8 +258,8 @@ Below is a sample of posting a status update to twitter
     
     
     
-AppMobi.toolkit.css3animate
-=======================
+== AppMobi.toolkit.css3animate
+
 This is a library to help with css3 animations
 
 To use AppMobi.toolkit.css3animate you must
