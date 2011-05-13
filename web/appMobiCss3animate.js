@@ -5,9 +5,8 @@
  */
 if(!window.AppMobi)
 	AppMobi={};
-if (!AppMobi.toolkit)
-	AppMobi.toolkit = {};
-
+if(!AppMobi.toolkit)
+	AppMobi.toolkit={};
 AppMobi.toolkit.css3Animate = (function() {
 
 	var translateOpen = 'm11' in new WebKitCSSMatrix() ? "3d(" : "(";
@@ -21,13 +20,22 @@ AppMobi.toolkit.css3Animate = (function() {
 			this.el = elID;
 		}
 		if (!this instanceof css3Animate) {
-			return new css3Animate(elID, opts);
+			return new css3Animate(elID, options);
+		}
+		if(!options)
+		{
+			alert("Please provide configuration options for animation of "+elID);
+			return;
 		}
 		this.el.addEventListener("webkitTransitionEnd", finishAnimation, false);
 		if (options["opacity"]) {
 			this.el.style.opacity = options["opacity"];
 
 		}
+		if(!options["y"])
+			options["y"]=0;
+		if(!options["x"])
+			options["x"]=0;
 		if (options["previous"]) {
 			options.y += new WebKitCSSMatrix(
 					window.getComputedStyle(this.el).webkitTransform).f;
@@ -36,8 +44,8 @@ AppMobi.toolkit.css3Animate = (function() {
 		}
 		if(!options["timingFunction"])
 			options["timingFunction"]="linear";
-		this.el.style.webkitTransform = "translate" + translateOpen + options.x
-				+ "px," + options.y + "px" + translateClose + " scale(1)";
+		this.el.style.webkitTransform = "translate" + translateOpen + parseInt(options.x)
+				+ "px," + parseInt(options.y) + "px" + translateClose + " scale(1)";
 		// this.el.style.webkitTransitionDuration = options["time"];
 		this.el.style.webkitBackfaceVisiblity = "hidden";
 		this.el.style.webkitTransition = "all " + options["time"];
