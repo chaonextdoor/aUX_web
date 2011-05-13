@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!--HTML5 doctype-->
+<html>
+<head>
+<title>Your New Application</title>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<style type="text/css">
+/* Prevent copy paste for all elements except text fields */
+* {
+	-webkit-user-select: none;
+	-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+}
+
+input,textarea {
+	-webkit-user-select: text;
+}
+
+/* Set up the page with a default background image */
+body {
+	background-color: #fff;
+	color: #000;
+	font-family: Arial;
+	font-size: 16pt;
+	margin: 0px;
+	padding: 0px;
+}
+
+.scrollBar {
+	opacity: .7;
+	background: black;
+}
+</style>
+<script type="text/javascript" charset="utf-8"
+	src="http://localhost:58888/_appMobi/appmobi.js"></script>
+<script type="text/javascript" src="touch.js"></script>
+<script type="text/javascript" charset="utf-8"
+	src="../web/appMobiCss3animate.js"></script>
+<script type="text/javascript">
+	/* This function runs once the page is loaded, but appMobi is not yet active */
+	var init = function() {
+	};
+	window.addEventListener("load", init, false);
+
+	/* This code prevents users from dragging the page */
+	var preventDefaultScroll = function(event) {
+		event.preventDefault();
+		window.scroll(0, 0);
+		return false;
+	};
+	document.addEventListener('touchmove', preventDefaultScroll, false);
+
+	/* This code is used to run as soon as appMobi activates */
+
+	var onDeviceReady = function() {
+		AppMobi.display.useViewport(320, 480);
+
+	};
+	document.addEventListener("appMobi.device.ready", onDeviceReady, false);
+
+	function moveOnce() {
+		AppMobi.toolkit.css3Animate("animate", {
+			width : "100px",
+			height : "100px",
+			x : 20,
+			y : 30,
+			time : "1000ms",
+			opacity : .5,
+			callback : function() {
+				reset()
+			}
+		});
+	}
+	function reset() {
+		AppMobi.toolkit.css3Animate("animate", {
+			x : 0,
+			y : 0,
+			opacity : 1,
+			width : "50px",
+			height : "50px",
+			time : "0ms"
+		});
+	}
+	function moveTwice() {
+		AppMobi.toolkit.css3Animate("animate", {
+			x : 20,
+			y : 30,
+			time : "300ms",
+			callback : function() {
+				AppMobi.toolkit.css3Animate("animate", {
+					x : 20,
+					y : 30,
+					time : "500ms",
+					previous : true,
+					callback : function() {
+						reset();
+					}
+				});
+
+			}
+		});
+	}
+</script>
+
+</head>
+<body>
+	<a href="javascript:;" onClick="moveOnce()">Move Once</a> |
+	<a href="javascript:;" onClick="moveTwice()">Move Twice</a>
+	<br>
+	<div id="animate"
+		style="width: 50px; height: 50px; border: 1px solid black; background: red"></div>
+</body>
+</html>
