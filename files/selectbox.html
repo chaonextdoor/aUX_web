@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!--HTML5 doctype-->
+<html>
+<head>
+<title>Your New Application</title>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<style type="text/css">
+/* Prevent copy paste for all elements except text fields */
+* {
+	-webkit-user-select: none;
+	-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+}
+
+input,textarea {
+	-webkit-user-select: text;
+}
+
+/* Set up the page with a default background image */
+body {
+	background-color: #fff;
+	color: #000;
+	font-family: Arial;
+	font-size: 16pt;
+	margin: 0px;
+	padding: 0px;
+}
+</style>
+<script type="text/javascript" charset="utf-8"
+	src="http://localhost:58888/_appMobi/appmobi.js"></script>
+
+
+ <script type="text/javascript" src="../web/appMobiSelectBox.js"></script>
+<script type="text/javascript" src="../web/appMobiScroll.js"></script>
+<script type="text/javascript" src="touch.js"></script>
+<script type="text/javascript">
+	/* This function runs once the page is loaded, but appMobi is not yet active */
+	var init = function() {
+		var selectFixer = new AppMobi.toolkit.appMobiSelect();
+		selectFixer.getOldSelects("selectTest");
+	};
+	window.addEventListener("load", init, false);
+
+	function debugMsg() {
+		document.getElementById("debug").innerHTML += "Shake callback<br>";
+	}
+
+	/* This code prevents users from dragging the page */
+	var preventDefaultScroll = function(event) {
+		event.preventDefault();
+		window.scroll(0, 0);
+		return false;
+	};
+	document.addEventListener('touchmove', preventDefaultScroll, false);
+
+	/* This code is used to run as soon as appMobi activates */
+	var onDeviceReady = function() {
+		AppMobi.display.useViewport(320, 480);
+
+	};
+	document.addEventListener("appMobi.device.ready", onDeviceReady, false);
+</script>
+
+</head>
+<body>
+	<div id="selectTest"
+		style="position: absolute; top: 0px; -webkit-transform: translate3d(0, 0, 0)">
+		<!-- content goes here-->
+		<span><select id="test">
+				<option value="1">One</option>
+				<option value="2">Two</option>
+				<option value="3">Three</option>
+		</select> </span> <br> <br> <span><select id="test2">
+				<option value="1">One</option>
+				<option value="2">Two</option>
+				<option value="3">Three</option>
+				<option value="11">1One</option>
+				<option value="22">2Two</option>
+				<option value="33">3Three</option>
+		</select> </span>
+	</div>
+
+</body>
+</html>

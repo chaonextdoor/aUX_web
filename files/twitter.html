@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<!--HTML5 doctype-->
+<html>
+<head>
+<title>Your New Application</title>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<style type="text/css">
+/* Prevent copy paste for all elements except text fields */
+* {
+	-webkit-user-select: none;
+	-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+}
+
+input,textarea {
+	-webkit-user-select: text;
+}
+
+/* Set up the page with a default background image */
+body {
+	background-color: #fff;
+	color: #000;
+	font-family: Arial;
+	font-size: 18pt;
+	margin: 0px;
+	padding: 0px;
+}
+</style>
+<script type="text/javascript" charset="utf-8"
+	src="http://localhost:58888/_appMobi/appmobi.js"></script>
+<script type="text/javascript" src="touch.js"></script>
+<script type="text/javascript" charset="utf-8" src="../appmobi/appmobiSocial.js"></script>
+<script type="text/javascript">
+	var serviceName = "twitter";
+	var twitter = new AppMobi.toolkit.social(serviceName);
+	function runOauth() {
+		try {
+			document.getElementById("available").style.display = 'block';
+		} catch (e) {
+			alert("Error " + e.message)
+		}
+	}
+
+	function getUpdates() {
+		twitter.makeRequest(
+				"https://api.twitter.com/1/statuses/user_timeline.json",
+				"get_timeline", "GET", printTimeline);
+	}
+
+	function printTimeline(data) {
+		try {
+			if (!data.success) {
+				var obj = JSON.parse(data.response);
+				alert("Error with request " + obj.error);
+			} else {
+				document.getElementById("twitter_status").innerHTML = data.response;
+			}
+		} catch (e) {
+			alert(" CB error " + e);
+		}
+	}
+
+	function testPost() {
+		twitter.makeRequest("https://api.twitter.com/1/statuses/update.json",
+				"set_update", "POST", printTimeline, "status=foobar");
+	}
+
+	function unAuthorized() {
+
+		twitter.deAuthorizeService(function(ev) {
+			alert("Deauthorized");
+		});
+	}
+
+	/* This function runs once the page is loaded, but appMobi is not yet active */
+	var init = function() {
+
+	};
+	window.addEventListener("load", init, false);
+
+	/* This code prevents users from dragging the page */
+	var preventDefaultScroll = function(event) {
+		event.preventDefault();
+		window.scroll(0, 0);
+		return false;
+	};
+	//document.addEventListener('touchmove', preventDefaultScroll, false);
+
+	/* This code is used to run as soon as appMobi activates */
+
+	var onDeviceReady = function() {
+		//Size the display to 768px by 1024px
+
+		AppMobi.display.useViewport(320, 480)
+		if (AppMobi.oauthAvailable)
+			runOauth();
+
+	};
+
+	document.addEventListener("appMobi.device.ready",onDeviceReady,false);
+</script>
+
+</head>
+<body>
+	<br>
+	<a href="javascript:;" onClick="unAuthorized()">Unauthorize</a>
+	<br>
+	<br>
+	<div id="available" style="display: none">
+		<a href="javascript:testPost();">Make a test post</a> | <a
+			href="javascript:getUpdates()">Get Updates</a>
+	</div>
+	<br> Your Twitter Status
+	<br>
+	<br>
+	<div id="twitter_status"></div>
+</body>
+</html>

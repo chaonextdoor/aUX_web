@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!--HTML5 doctype-->
+<html>
+<head>
+<title>Your New Application</title>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<style type="text/css">
+/* Prevent copy paste for all elements except text fields */
+* {
+	-webkit-user-select: none;
+	-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+}
+
+input,textarea {
+	-webkit-user-select: text;
+}
+
+/* Set up the page with a default background image */
+body {
+	background-color: #fff;
+	color: #000;
+	font-family: Arial;
+	font-size: 16pt;
+	margin: 0px;
+	padding: 0px;
+}
+
+.scrollBar {
+	opacity: .7;
+	background: black;
+}
+</style>
+<script type="text/javascript" charset="utf-8"
+	src="http://localhost:58888/_appMobi/appmobi.js"></script>
+<script type="text/javascript" src="touch.js"></script>
+<script type="text/javascript" charset="utf-8" src="../appmobi/appMobiShake.js"></script>
+<script type="text/javascript">
+	/* This function runs once the page is loaded, but appMobi is not yet active */
+	var init = function() {
+	};
+	window.addEventListener("load", init, false);
+
+	function debugMsg() {
+		document.getElementById("debug").innerHTML += "Shake callback<br>";
+	}
+
+	/* This code prevents users from dragging the page */
+	var preventDefaultScroll = function(event) {
+		event.preventDefault();
+		window.scroll(0, 0);
+		return false;
+	};
+	document.addEventListener('touchmove', preventDefaultScroll, false);
+
+	/* This code is used to run as soon as appMobi activates */
+	var onDeviceReady = function() {
+		//Size the display to 768px by 1024px
+		AppMobi.display.useViewport(320, 480);
+		AppMobi.toolkit.shakeListener(function() {
+			debugMsg();
+		}, 5);
+	};
+	document.addEventListener("appMobi.device.ready", onDeviceReady, false);
+</script>
+
+</head>
+<body>
+	<!-- content goes here-->
+	<b>Shake Events</b><br>
+	<div id="debug"></div>
+</body>
+</html>

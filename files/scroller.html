@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<!--HTML5 doctype-->
+<html>
+<head>
+<title>Your New Application</title>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<style type="text/css">
+/* Prevent copy paste for all elements except text fields */
+* {
+	-webkit-user-select: none;
+	-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+}
+
+input,textarea {
+	-webkit-user-select: text;
+}
+
+/* Set up the page with a default background image */
+body {
+	background-color: #fff;
+	color: #000;
+	font-family: Arial;
+	font-size: 16pt;
+	margin: 0px;
+	padding: 0px;
+}
+
+.scrollBar {
+	opacity: .7;
+	background: black;
+}
+
+.scrollBarV {
+	opacity: .7;
+	background: black;
+	width: 10px;
+	border-radius: 4px;
+}
+
+.scrollBarh {
+	opacity: .7;
+	background: black;
+	height: 15px;
+	border-radius: 4px;
+}
+</style>
+<script type="text/javascript" charset="utf-8"
+	src="http://localhost:58888/_appMobi/appmobi.js"></script>
+<script type="text/javascript" src="touch.js"></script>
+<script type="text/javascript" charset="utf-8" src="../web/appMobiScroll.js"></script>
+<script type="text/javascript">
+	/* This function runs once the page is loaded, but appMobi is not yet active */
+	var init = function() {
+		var myScroller = new AppMobi.toolkit.scroller("scroller", {
+			scrollBars : true,
+			verticalScroll : true,
+			horizontalScroll : true,
+			vScrollCSS : "scrollBarV",
+			hScrollCSS : "scrollBarH"
+		});
+	};
+	window.addEventListener("load", init, false);
+
+	/* This code prevents users from dragging the page */
+	var preventDefaultScroll = function(event) {
+		event.preventDefault();
+		window.scroll(0, 0);
+		return false;
+	};
+	document.addEventListener('touchmove', preventDefaultScroll, false);
+
+	/* This code is used to run as soon as appMobi activates */
+	var onDeviceReady = function() {
+		//Size the display to 768px by 1024px
+		AppMobi.display.useViewport(320, 480);
+	};
+	document.addEventListener("appMobi.device.ready", onDeviceReady, false);
+</script>
+
+</head>
+<body>
+	<div id="outercontent"
+		style="height: 300px; width: 500px; overflow: hidden; position: relative">
+		<div id="scroller">Lorem ipsum dolor sit amet, consectetur
+			adipiscing elit. Duis porta, lorem sit amet feugiat lacinia, mi dui
+			sodales eros, id lacinia mauris urna eu est. Proin pulvinar, augue
+			sed convallis elementum, magna diam pharetra magna, id vestibulum est
+			eros vitae ante. Ut auctor erat a tellus venenatis eu fermentum lorem
+			scelerisque. Cras dignissim leo ornare massa sollicitudin sit amet
+			pulvinar turpis hendrerit. Morbi hendrerit nunc eget turpis luctus id
+			ultricies lorem consequat. Donec eu lacus sed mauris sollicitudin
+			laoreet. Cras vitae sodales diam. Donec mollis, libero ut
+			pellentesque dignissim, risus orci ornare nisi, sed eleifend enim
+			purus malesuada neque. Nulla tellus sem, scelerisque sed sagittis id,
+			eleifend venenatis ligula. Vivamus placerat neque sit amet metus
+			ultricies facilisis. Nulla a odio magna. Pellentesque habitant morbi
+			tristique senectus et netus et malesuada fames ac turpis egestas. Sed
+			commodo quam eu enim lacinia vitae ultrices nulla mollis. Aenean eget
+			lectus turpis, at ultrices leo. Nulla vehicula magna in risus ornare
+			vestibulum. Integer gravida magna quam. Donec augue ante, fringilla
+			non congue eu, aliquam lacinia nisi. Class aptent taciti sociosqu ad
+			litora torquent per conubia nostra, per inceptos himenaeos. Maecenas
+			nisl ante, suscipit ut suscipit nec, dictum sit amet orci. Maecenas
+			fermentum sapien turpis, sit amet eleifend justo. Aenean auctor
+			interdum sem sed tincidunt. Aliquam ullamcorper malesuada fermentum.
+			Nunc consectetur, ipsum et pulvinar ultrices, lorem nibh egestas
+			sapien, at egestas lorem metus sit amet lacus. Maecenas non feugiat
+			orci. Curabitur imperdiet tempus lacus, volutpat fermentum diam
+			convallis a. In hac habitasse platea dictumst. Pellentesque nec ipsum
+			diam, at consectetur elit. Duis feugiat ullamcorper libero tincidunt
+			aliquet. Sed leo nisl, iaculis non pellentesque nec, scelerisque vel
+			felis</div>
+	</div>
+</body>
+</html>

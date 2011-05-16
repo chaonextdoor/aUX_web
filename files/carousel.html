@@ -1,0 +1,124 @@
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<title>Carousel</title>
+
+<script type="text/javascript" charset="utf-8"
+	src="http://localhost:58888/_appMobi/appmobi.js"></script>
+
+<script src="../web/appMobiCarousel.js"></script>
+<script type="text/javascript" src="touch.js"></script>
+<style type="text/css">
+* {
+	-webkit-user-select: none; /* prevent copy paste for all elements */
+}
+
+body {
+	color: White;
+	font-family: Arial;
+	font-size: 22pt;
+	background: black;
+}
+
+.carousel_paging2 {
+	border-radius: 10px;
+	border: 3px solid white;
+	background: #c3c;
+	width: 20px;
+	height: 20px;
+	float: left;
+}
+
+.carousel_paging2_selected {
+	border-radius: 10px;
+	border: 3px solid white;
+	background: #ccc;
+	width: 20px;
+	height: 20px;
+	float: left;
+}
+
+.spacer {
+	width: 20px;
+	float: left;
+}
+
+.carousel_content {
+	-webkit-transform: translate3d(0, 0, 0);
+}
+</style>
+
+<script language="javascript" type="text/javascript">
+	//global variables
+
+	//*** Device Ready Code **********
+	//This event handler is fired once the AppMobi libraries are ready
+	//AppMobi is ready to roll
+	function onDeviceReady() {
+		//use AppMobi viewport
+		AppMobi.display.useViewport(768, 1024);
+
+		//lock orientation
+		AppMobi.device.setRotateOrientation("portrait");
+		AppMobi.device.setAutoRotate(false);
+
+		//manage power
+		AppMobi.device.managePower(true, false);
+	}
+
+	//initial event handler to detect when appMobi is ready to roll
+	document.addEventListener("appMobi.device.ready", onDeviceReady, false);
+
+	//*** Prevent Default Scroll ******
+	preventDefaultScroll = function(event) {
+		// Prevent scrolling on this element
+		event.preventDefault();
+		window.scroll(0, 0);
+		return false;
+	};
+
+	window.document.addEventListener('touchmove', preventDefaultScroll, false);
+
+	function init() {
+		AppMobi.toolkit.carousel("carousel", {
+			pagingDiv : "carousel_dots",
+			totalPages : 2,
+			pagingCssName : "carousel_paging2",
+			pagingCssNameSelected : "carousel_paging2_selected"
+		});
+		AppMobi.toolkit.carousel("carousel_v", {
+			totalPages : 2,
+			vertical : true,
+			pagingCssName : "carousel_paging2",
+			pagingCssNameSelected : "carousel_paging2_selected"
+		});
+
+	}
+</script>
+
+</head>
+<body onload="init()">
+	<div id="carousel"
+		style="overflow: hidden; height: 400px; width: 768px; float: left;">
+		<div
+			style="float: left; width: 766px; height: 400; border: 1px solid white; background: yellow;"></div>
+		<div
+			style="float: left; width: 766px; height: 400; border: 1px solid white;; background: green;"></div>
+	</div>
+	<div id="carousel_dots"
+		style="text-align: center; margin-left: auto; margin-right: auto; clear: both; position: relative; top: -40px; z-index: 200">
+	</div>
+	<br style="clear: both">
+
+	<div id="carousel_dots_v"
+		style="text-align: center; margin-top: auto; margin-bottom: auto; clear: both; position: relative; top: 200px; z-index: 200; left: 10px">
+	</div>
+
+	<div id="carousel_v"
+		style="overflow: hidden; height: 400px; width: 768px; float: left;">
+		<div
+			style="width: 766px; height: 400; border: 1px solid white; background: yellow;"></div>
+		<div
+			style="width: 766px; height: 400; border: 1px solid white;; background: green;"></div>
+	</div>
+</body>
+</html>
