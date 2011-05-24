@@ -8,11 +8,12 @@ if(!window.AppMobi)
 if (!AppMobi.toolkit)
 	AppMobi.toolkit = {};
 AppMobi.toolkit.appMobiPassword = function() {
-	this.oldPasswords = [];
+	this.oldPasswords = {};
 };
 
 AppMobi.toolkit.appMobiPassword.prototype = {
 	oldPasswords : [],
+	showPasswordPlainText:false,
 	getOldPasswords : function(elID) {
 		var container = elID && document.getElementById(elID) ? document
 				.getElementById(elID) : document;
@@ -27,23 +28,26 @@ AppMobi.toolkit.appMobiPassword.prototype = {
 		for ( var i = 0; i < sels.length; i++) {
 			if (sels[i].type != "password")
 				continue;
-
-			this.oldPasswords.push(document.getElementById(sels[i]));
+			
+			this.oldPasswords[sels[i].id]=sels[i];
 			var fakeInput = document.createElement("input");
 			var selWidth = parseInt(sels[i].style.width) > 0 ? parseInt(sels[i].style.width)
 					: 100;
 			var selHeight = parseInt(sels[i].style.height) > 0 ? parseInt(sels[i].style.height)
 					: 20;
 			fakeInput.type = "text";
+			if(sels[i].className!=""){
 			fakeInput.style.width = selWidth + "px";
 			fakeInput.style.height = selHeight + "px";
-			fakeInput.style.position = "absolute";
+			fakeInput.style.backgroundColor = "white";
+			}
+			fakeInput.style.position = "relative";
 			fakeInput.style.left = "0px";
 			fakeInput.style.top = "0px";
 			fakeInput.style.zIndex = "1";
 			fakeInput.value = sels[i].value;
-			fakeInput.style.backgroundColor = "white";
-			fakeInput.className = "appMobiSelect_fakeInput";
+			fakeInput.showPasswordPlainText=that.showPasswordPlainText;
+			fakeInput.className = sels[i].className;
 			fakeInput.id = sels[i].id + "_appMobiPassword";
 			fakeInput.placeHolder = sels[i].placeHolder;
 			var realPW = sels[i];
@@ -54,13 +58,13 @@ AppMobi.toolkit.appMobiPassword.prototype = {
 					var oldCaret = this.selectionStart;
 					that.updatePassword(realPW, theText, this.selectionStart,
 							this.value.length);
-					if (realPW.value.length > 0) {
+					if (realPW.value.length > 0&&!this.showPasswordPlainText) {
 						var oldTxt = this.value;
 						this.value = "";
 						this.value = oldTxt.replace(theText, "*");
 						if (oldCaret != this.value.length)
 							this.setSelectionRange(oldCaret, oldCaret);
-					} else
+					} else if(realPW.value.length==0)
 						this.value = "";
 				}
 			};
@@ -82,6 +86,29 @@ AppMobi.toolkit.appMobiPassword.prototype = {
 			var str = elem.value;
 			elem.value = str.substring(0, caretPos)
 					+ str.substring(caretPos + 1, str.length);
+		}
+	},
+	changePasswordVisiblity:function(what,id)
+	{
+		what=parseInt(what);
+		if(this.oldPasswords[id])
+		{
+			var theEl=document.getElementById(id+"_appMobiPassword");
+			if(what==1){ //show
+				this.showPasswordPlainText=true;
+				theEl.showPasswordPlainText=showPasswordPlainText=true;
+				theEl.value=this.oldPasswords[id].value;
+			}
+			else {
+				this.showPasswordPlainText=false;
+				theEl.showPasswordPlainText=showPasswordPlainText=false;
+				var pwStr="";
+				for(var i=0;i<theEl.value.length;i++)
+				{
+					pwStr+="*";
+				}
+				theEl.value=pwStr;
+			}
 		}
 	}
 };
