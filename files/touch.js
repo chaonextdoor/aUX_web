@@ -1,37 +1,51 @@
 function emulateTouchEvents() {
-	console.log("wiring");
-	var ee = document.querySelectorAll("*");
-	for ( var x = 0; x < ee.length; x++) {
-		ee[x].onmousedown = function(e) {
-			try {
-				// fire off a touchstart event
-				var touchevt = redirectMouseToTouch("touchstart", e);
-				if (frm.contentWindow.document.ontouchstart)
+		//if(emulatorReady)
+			//frm.contentWindow.AppMobi.setReady();
+			
+		var ee=document.querySelectorAll("*");
+		for(var x=0;x<ee.length;x++)
+		{
+		    ee[x].mouseMoving=false;
+			ee[x].onmousedown=function(e)
+			{
+			  
+				try
+				{
+				    this.mouseMoving=true;
+				//fire off a touchstart event
+				var touchevt=redirectMouseToTouch("touchstart", e);
+				if(frm.contentWindow.document.ontouchstart)
 					frm.contentWindow.document.ontouchstart(touchevt);
-			} catch (e) {
+				}catch(e){ }
 			}
-		};
-
-		ee[x].onmouseup = function(e) {
-			try {
-				// fire off a touchstart event
-				var touchevt = redirectMouseToTouch("touchend", e);
-				if (frm.contentWindow.document.ontouchend)
-					frm.contentWindow.document.ontouchend(touchevt);
-			} catch (e) {
+			
+			ee[x].onmouseup=function(e)
+			{
+				try
+				{
+				  this.mouseMoving=false;
+                        		//fire off a touchstart event
+					var touchevt=redirectMouseToTouch("touchend", e);
+					if(frm.contentWindow.document.ontouchend)
+						frm.contentWindow.document.ontouchend(touchevt);
+				}
+				catch(e){ }
 			}
-		};
-
-		ee[x].onmousemove = function(e) {
-			try {
-				// fire off a touchstart event
-				var touchevt = redirectMouseToTouch("touchmove", e);
-				if (frm.contentWindow.document.ontouchmove)
+			
+			ee[x].onmousemove=function(e)
+			{
+			    try
+			    {
+				 if(!this.mouseMoving)
+				    return;
+				//fire off a touchstart event
+				var touchevt=redirectMouseToTouch("touchmove", e);
+				if(frm.contentWindow.document.ontouchmove)
 					frm.contentWindow.document.ontouchmove(touchevt);
-			} catch (e) {
+			    }
+			    catch(e){ }
 			}
-		};
-	}
+		}
 }
 
 function redirectMouseToTouch(type, originalEvent) {
