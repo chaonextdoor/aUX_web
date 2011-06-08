@@ -1,17 +1,21 @@
 /**
- * AppMobi.toolkit.scroller 
- * @copyright 2011 - AppMobi
- * @author IDM
+ * AppMobi.toolkit.scroller - a scrolling library for AppMobi Apps Copyright
+ * 2011 - AppMobi Author: IDM
+ * 
+ * @TODO - add 'load more' to the bottom
+ * @TODO - fix positioning of scrollbars based off content related to top/bottom
  */
 
 if(!window.AppMobi)
 	AppMobi={};
+
 if (!AppMobi.toolkit)
 	AppMobi.toolkit = {};
 
 AppMobi.toolkit.scroller = (function() {
 	var translateOpen = 'm11' in new WebKitCSSMatrix() ? "3d(" : "(";
 	var translateClose = 'm11' in new WebKitCSSMatrix() ? ",0)" : ")";
+	var touchStarted=false;
 
 	var scroller = function(elID, opts) {
 		if (typeof elID == "string" || elID instanceof String) {
@@ -34,9 +38,9 @@ AppMobi.toolkit.scroller = (function() {
 		try {
 			this.container = this.el.parentNode;
 			var that = this;
-			this.el.addEventListener('touchstart', function(e) {
+		/*	this.el.addEventListener('touchstart', function(e) {
 				that.touchStart(e);
-			}, false);
+			}, false);*/
 			this.el.addEventListener('touchmove', function(e) {
 				that.touchMove(e);
 			}, false);
@@ -118,6 +122,11 @@ AppMobi.toolkit.scroller = (function() {
 		// handle the moving function
 		touchMove : function(event) {
 			try {
+				if(!touchStarted){
+					touchStarted=true;
+					this.touchStart(event);
+				}
+
 				if (this.currentScrollingObject != null) {
 					event.preventDefault();
 					var scrollPoints = {
@@ -202,7 +211,7 @@ AppMobi.toolkit.scroller = (function() {
 		},
 
 		touchStart : function(event) {
-
+			
 			var container = this.container;
 			var eleScrolling = this.el;
 			if (!container)
@@ -301,8 +310,10 @@ AppMobi.toolkit.scroller = (function() {
 
 		// touchend callback. Set the current scrolling object and scrollbar to
 		// null
-		touchEnd : function() {
+		touchEnd : function(event) {
 			if (this.currentScrollingObject != null) {
+			    event.preventDefault();
+				event.stopPropagation();
 				this.finishScrollingObject = this.currentScrollingObject;
 				this.currentScrollingObject = null;
 				var scrollPoints = {
@@ -396,6 +407,7 @@ AppMobi.toolkit.scroller = (function() {
 			}
 			this.hdistanceMoved = 0;
 			this.vdistanceMoved = 0;
+			touchStarted=false;
 		},
 
 		scrollerMoveCSS : function(el, distanceToMove, time, timingFunction) {
