@@ -3,7 +3,7 @@
  * @copyright 2011 - AppMobi
  * @author IDM
  */
-if(!window.AppMobi)
+ if(!window.AppMobi)
 	AppMobi={};
 if(!AppMobi.toolkit)
 	AppMobi.toolkit={};
@@ -22,6 +22,8 @@ AppMobi.toolkit.css3Animate = (function() {
 		if (!this instanceof css3Animate) {
 			return new css3Animate(elID, options);
 		}
+		if(!this.el)
+			return;
 		if(!options)
 		{
 			alert("Please provide configuration options for animation of "+elID);
@@ -44,9 +46,14 @@ AppMobi.toolkit.css3Animate = (function() {
 		}
 		if(!options["timingFunction"])
 			options["timingFunction"]="linear";
-		this.el.style.webkitTransform = "translate" + translateOpen + parseInt(options.x)
-				+ "px," + parseInt(options.y) + "px" + translateClose + " scale(1)";
-		// this.el.style.webkitTransitionDuration = options["time"];
+		
+		//check for percent or numbers
+		if(typeof(options.x)=="number"||(options.x.indexOf("%")==-1&&options.x.toLowerCase().indexOf("px")==-1))
+		   options.x=parseInt(options.x)+"px";
+		if(typeof(options.y)=="number"||(options.y.indexOf("%")==-1&&options.y.toLowerCase().indexOf("px")==-1))
+		   options.y=parseInt(options.y)+"px";
+		   
+		this.el.style.webkitTransform = "translate" + translateOpen + (options.x)+"," + (options.y)+ translateClose + " scale(1)";
 		this.el.style.webkitBackfaceVisiblity = "hidden";
 		this.el.style.webkitTransition = "all " + options["time"];
 		this.el.style.webkitTransitionTimingFunction = options["timingFunction"];

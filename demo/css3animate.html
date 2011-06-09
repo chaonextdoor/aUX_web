@@ -32,9 +32,8 @@ body {
 </style>
 <script type="text/javascript" charset="utf-8"
 	src="http://localhost:58888/_appMobi/appmobi.js"></script>
-<script type="text/javascript" src="touch.js"></script>
 <script type="text/javascript" charset="utf-8"
-	src="../web/appMobiCss3animate.js"></script>
+	src="appMobiCss3animate.js"></script>
 <script type="text/javascript">
 	/* This function runs once the page is loaded, but appMobi is not yet active */
 	var init = function() {
@@ -61,8 +60,8 @@ body {
 		AppMobi.toolkit.css3Animate("animate", {
 			width : "100px",
 			height : "100px",
-			x : 20,
-			y : 30,
+			x : "20%",
+			y : "30%",
 			time : "1000ms",
 			opacity : .5,
 			callback : function() {
@@ -72,7 +71,6 @@ body {
 	}
 	function reset() {
 		AppMobi.toolkit.css3Animate("animate", {
-			x : 0,
 			y : 0,
 			opacity : 1,
 			width : "50px",

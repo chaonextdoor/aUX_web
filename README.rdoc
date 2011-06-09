@@ -229,13 +229,14 @@ To use AppMobi.toolkit.css3animate you must
 There are additional configuration options that are passed in as an object parameter
 
     var options={
-	   x:20, //x axis move
+	   x:20, //x axis move. this can be a number (40), percent (50%), or pixels (40px) - if it's a number, px is added to it.
 	   y:20, //y axis move
 	   opacity:.5, //opacity to change to
 	   width:"100px", //style.width to change to
 	   height:"100px", //style.height to change to
 	   time:"300ms", //time for transition
 	   timingFunction:"linear", //timing function for animation
+	   previous:false // move from previous position - not tested with animation by percentages
 	   callback:function(){console.log("finished animation")}
 	}
 	
