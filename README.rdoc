@@ -234,6 +234,11 @@ There are additional configuration options that are passed in as an object param
 	   opacity:.5, //opacity to change to
 	   width:"100px", //style.width to change to
 	   height:"100px", //style.height to change to
+	   origin:"50% 50%", //offset to start the animation from default is 0 0
+	   rotateX:"50deg", //rotate along the x-axis
+	   rotateY:"50deg", //rotate along the y-axis
+	   skewX:"50deg", //skew along the x-axis
+	   skewY:"50deg", //skew along the y-axis
 	   time:"300ms", //time for transition
 	   timingFunction:"linear", //timing function for animation
 	   previous:false // move from previous position - not tested with animation by percentages

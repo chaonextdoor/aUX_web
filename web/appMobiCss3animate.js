@@ -44,19 +44,38 @@ AppMobi.toolkit.css3Animate = (function() {
 			options.x += new WebKitCSSMatrix(
 					window.getComputedStyle(this.el).webkitTransform).e;
 		}
+		if(!options["origin"])
+		   options.origin="0% 0%";
+		
+		if(!options["scale"])
+		   options.scale="1";
+		
+		if(!options["rotateY"])
+		   options.rotateY="0";
+		if(!options["rotateX"])
+		   options.rotateX="0";
+		if(!options["skewY"])
+		   options.skewY="0";
+		if(!options["skewX"])
+		   options.skewX="0";
+		   
 		if(!options["timingFunction"])
 			options["timingFunction"]="linear";
 		
 		//check for percent or numbers
+		
+		
 		if(typeof(options.x)=="number"||(options.x.indexOf("%")==-1&&options.x.toLowerCase().indexOf("px")==-1))
 		   options.x=parseInt(options.x)+"px";
 		if(typeof(options.y)=="number"||(options.y.indexOf("%")==-1&&options.y.toLowerCase().indexOf("px")==-1))
 		   options.y=parseInt(options.y)+"px";
 		   
-		this.el.style.webkitTransform = "translate" + translateOpen + (options.x)+"," + (options.y)+ translateClose + " scale(1)";
+		this.el.style.webkitTransform = "translate" + translateOpen + (options.x)+"," + (options.y)+ translateClose + " scale("+parseFloat(options.scale)+") rotate("+options.rotateX+") rotateY("+options.rotateY+") skew("+options.skewX+","+options.skewY+")";
 		this.el.style.webkitBackfaceVisiblity = "hidden";
 		this.el.style.webkitTransition = "all " + options["time"];
 		this.el.style.webkitTransitionTimingFunction = options["timingFunction"];
+		this.el.style.webkitTransformOrigin=options.origin;
+
 		if (options["width"]) {
 			this.el.style.width = options["width"];
 		}
