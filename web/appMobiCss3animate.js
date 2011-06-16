@@ -22,6 +22,7 @@ AppMobi.toolkit.css3Animate = (function() {
 		if (!this instanceof css3Animate) {
 			return new css3Animate(elID, options);
 		}
+		
 		if(!this.el)
 			return;
 		if(!options)
@@ -29,6 +30,8 @@ AppMobi.toolkit.css3Animate = (function() {
 			alert("Please provide configuration options for animation of "+elID);
 			return;
 		}
+		this.animID=0|Math.random() * 99999999;
+		var that=this;
 		this.el.addEventListener("webkitTransitionEnd", finishAnimation, false);
 		if (options["opacity"]) {
 			this.el.style.opacity = options["opacity"];
@@ -64,7 +67,7 @@ AppMobi.toolkit.css3Animate = (function() {
 		
 		//check for percent or numbers
 		
-		
+					this.el.moving = true;
 		if(typeof(options.x)=="number"||(options.x.indexOf("%")==-1&&options.x.toLowerCase().indexOf("px")==-1))
 		   options.x=parseInt(options.x)+"px";
 		if(typeof(options.y)=="number"||(options.y.indexOf("%")==-1&&options.y.toLowerCase().indexOf("px")==-1))
@@ -83,25 +86,26 @@ AppMobi.toolkit.css3Animate = (function() {
 			this.el.style.height = options["height"];
 		}
 		if (options["callback"]) {
-
 			if (!webkitTransitionCallbacks[this.el.id])
 				webkitTransitionCallbacks[this.el.id] = [];
 			webkitTransitionCallbacks[this.el.id].push(options["callback"]);
-			this.el.moving = true;
+
 		}
 	};
 
 	function finishAnimation(event) {
 		event.preventDefault();
 		var that = event.target;
+		
 		if (!event.target.moving)
 			return;
+		that.removeEventListener("webkitTransitionEnd",finishAnimation,true);
 		event.target.moving = false;
-		if (webkitTransitionCallbacks[event.target.id]
-				&& webkitTransitionCallbacks[event.target.id].length > 0) {
-			var cb = webkitTransitionCallbacks[event.target.id].shift();
-			cb();
-		}
+		if (webkitTransitionCallbacks[that.id]
+				&& webkitTransitionCallbacks[that.id].length > 0) {
+				var tmp=webkitTransitionCallbacks[that.id].shift();
+				tmp();
+				}
 	}
 	return css3Animate;
 })();
