@@ -25,17 +25,17 @@ body {
 	padding: 0px;
 }
 </style>
-<script type="text/javascript" charset="utf-8"
-	src="http://localhost:58888/_appMobi/appmobi.js"></script>
 
 
- <script type="text/javascript" src="../web/appMobiSelectBox.js"></script>
-<script type="text/javascript" src="../web/appMobiScroll.js"></script>
+
+ <script type="text/javascript" src="../web/aUX_webSelectBox.js"></script>
+<script type="text/javascript" src="../web/aUX_webScroll.js"></script>
 <script type="text/javascript" src="touch.js"></script>
+
 <script type="text/javascript">
 	/* This function runs once the page is loaded, but appMobi is not yet active */
 	var init = function() {
-		var selectFixer = new AppMobi.toolkit.appMobiSelect();
+		var selectFixer = new aUX.web.appMobiSelect();
 		selectFixer.getOldSelects("selectTest");
 	};
 	window.addEventListener("load", init, false);

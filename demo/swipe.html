@@ -30,14 +30,12 @@ body {
 	background: black;
 }
 </style>
-<script type="text/javascript" charset="utf-8"
-	src="http://localhost:58888/_appMobi/appmobi.js"></script>
-	<script type="text/javascript" src="touch.js"></script>
-<script type="text/javascript" charset="utf-8" src="../web/appMobiSwipe.js"></script>
+<script type="text/javascript" charset="utf-8" src="../web/aUX_webSwipe.js"></script>
+<script type="text/javascript" src="touch.js"></script>
 <script type="text/javascript">
 	/* This function runs once the page is loaded, but appMobi is not yet active */
 	var init = function() {
-		var swipe = new AppMobi.toolkit.swipeListener("swiper", {
+		var swipe = new aUX.web.swipeListener("swiper", {
 			vthreshold : 30,
 			hthreshold : 50,
 			callBack : function(dir) {

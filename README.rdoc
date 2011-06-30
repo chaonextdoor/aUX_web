@@ -1,58 +1,58 @@
-== AppMobi.toolkit
+== aUX_web
 
-AppMobi.toolkit is a helper library for writing mobile web apps and AppMobi apps.
+aUX.web is a helper library for writing mobile web apps and AppMobi apps.
 
 == About
 
 At AppMobi, we use our own tools to build apps and these libraries came out of our internal needs.  Two libraries require AppMobi to use, while the rest can be used for AppMobi and general mobile web development.
-appmobi.toolkit.web.min.js contains a minified version of functions that can be used for mobile web development
-appmobi.toolkit.am.min.js contains the appmobi specific functions.
-appmobi.toolkit.all.min.js contains all the toolkit functions
+aUX.web.web.min.js contains a minified version of functions that can be used for mobile web development
+aUX.web.am.min.js contains the appmobi specific functions.
+aUX.web.all.min.js contains all the toolkit functions
 
 The sources are in the web/ and appmobi/ folders.  You can find demos in the demo/ folder.
 
 == Mobile Web Libaries (appmobi.web.min.js)
 These libraries can be used in AppMobi or general mobile web development.
 
-AppMobi.toolkit.scroller 
+aUX.web.scroller 
 * A CSS3 scrolling library.  This allows you to create a fixed height/width div and scroll veritical and/or horizontal.
 
-AppMobi.toolkit.carousel
+aUX.web.carousel
 * A CSS3 carousel library.  You can create vertical or horizontal carousels.
 
-AppMobi.toolkit.swipeListener
+aUX.web.swipeListener
 * This detects swipe events on an element.  You can set the threshold of pixels they must move for veritcal or horizontal.
 * Executes a callback function with an object as a parameter that indicates if the swipe was north, south, east, west.  
 
-AppMobi.toolkit.template
+aUX.web.template
 * A template parsing library, similar to popular scripting languages syntax.  The parsing engine is John Resig's micro template engine
 
-AppMobi.toolkit.appMobiSelect
+aUX.web.appMobiSelect
 * A replacement for HTML select boxes.  There is a bug when -webkit-transform:translate3d is applied to elements, it causes an issue with painting the active area
 * This will find all select boxes in an element and replace them with the new widget
 * Old select box stays, so it is backwards compatibile with any code/interaction.  
 
-AppMobi.toolkit.appMobiPassword
+aUX.web.appMobiPassword
 * A replacement for HTML password boxes.  There is a bug when -webkit-transform:translate3d is applied to elements, it causes an issue with painting the focused box on the page.
 * This will find all password boxes in an element and replace them with the new widget
 * Old password boxes stays, so it is backwards compatibile with any code/interaction
 
-AppMobi.toolkit.css3animate
+aUX.web.css3animate
 * This is a helper function for doing css3 animations.  It allows you to animate the x/y position, opacity and width/height (more properties coming soon).
 
 == AppMobi Libraries
 These libraries require AppMobi to work
 
-AppMobi.toolkit.shakeListener
+aUX.web.shakeListener
 * This taps into the accelerometer to trigger an event when the device has been shook.  You can set a threshold to indicate movement required to trigger the shake.
 * Executes a callback function when it recieves a shake.
 
-AppMobi.toolkit.social (coming soon in 3.4.1)
+aUX.web.social (coming soon in 3.4.1)
 * A wrapper utility for making oAuth calls using AppMobi
 
-== AppMobi.toolkit.scroller
+== aUX.web.scroller
 
-To use AppMobi.toolkit.scroller you must do the following
+To use aUX.web.scroller you must do the following
 
 1. Create an outer container div that has the height and width of the area you want to see visible
 
@@ -69,7 +69,7 @@ To use AppMobi.toolkit.scroller you must do the following
 	
 3. Call the javascript function
 
-        var scroller = new AppMobi.toolkit.scroller("my_div");
+        var scroller = new aUX.web.scroller("my_div");
 
 There are additional configuration options that are passed in as an object parameter
 
@@ -79,12 +79,12 @@ There are additional configuration options that are passed in as an object param
 		scrollBars:true  //display scrollbars
 	}
 	
-	var scroller = new AppMobi.toolkit.scroller("my_div",options);
+	var scroller = new aUX.web.scroller("my_div",options);
 
 	
-== AppMobi.toolkit.carousel
+== aUX.web.carousel
 
-To use AppMobi.toolkit.scroller you must do the following
+To use aUX.web.scroller you must do the following
 
 1. Create a div with the content inside you want to page between.  You must set the height and width of this div, along with overflow:hidden
 
@@ -99,7 +99,7 @@ To use AppMobi.toolkit.scroller you must do the following
 	
 3. Call the javascript function to create the carousel
 
-        var carousel = new AppMobi.toolkit.carousel("my_div");
+        var carousel = new aUX.web.carousel("my_div");
 	
 There are additional configuration options that are passed in as an object parameter
 
@@ -112,18 +112,18 @@ There are additional configuration options that are passed in as an object param
 		pagingCssNameSelected: "carousel_paging_selected" //classname for the selected page dots
 	}
 
-	var carousel = new AppMobi.toolkit.carousel("my_div",options);
+	var carousel = new aUX.web.carousel("my_div",options);
 	
 
-== AppMobi.toolkit.swipeListener
+== aUX.web.swipeListener
 
-To use AppMobi.toolkit.swipeListener you must do the following
+To use aUX.web.swipeListener you must do the following
 
 1. Create an html elemenet you want to detect the swipe on.  This could also be the whole document.
 
 2. Call the javascript function to listen for the swipe event
 
-        var swipe=new AppMobi.toolkit.swipeListener("document");
+        var swipe=new aUX.web.swipeListener("document");
 
 There are additional configuration options that are passed in as an object parameter
 
@@ -133,15 +133,15 @@ There are additional configuration options that are passed in as an object param
 		callback:null //callback function to execute.  It takes one parameter that has the swipe directions
 	}
 	
-    var swipeListener = new AppMobi.toolkit.swipeListener("document",options);
+    var swipeListener = new aUX.web.swipeListener("document",options);
 
-    var swipe = new AppMobi.toolkit.swipeListener("document",{vthreshold:30,hthreshold:50,callBack:function(dir){console.log(dir)}});
+    var swipe = new aUX.web.swipeListener("document",{vthreshold:30,hthreshold:50,callBack:function(dir){console.log(dir)}});
    	
 	
-== AppMobi.toolkit.template
+== aUX.web.template
 
 The template parsing library is John Resig's micro templating, with some fixes and enhancements.  http://ejohn.org/blog/javascript-micro-templating/
-To use AppMobi.toolkit.template you must do the following
+To use aUX.web.template you must do the following
 
 1. Create your template.  The easiest way is to create &lt;script> tags with the content type of "text/html" and set an id
 
@@ -152,7 +152,7 @@ To use AppMobi.toolkit.template you must do the following
 	    </script>
 2. To process the template you call a javascript function with the id of the template, and optional data to pass in
 
-        document.getElementById('output').innerHTML=AppMobi.toolkit.template("template");
+        document.getElementById('output').innerHTML=aUX.web.template("template");
 	
 You can pass in an optional object parameter that provides data to be used within the template.  Below is a sample that could display user information based on a user object
 
@@ -167,17 +167,17 @@ You can pass in an optional object parameter that provides data to be used withi
 		   company:"appMobi",
 		   awesome:"of course"
 		}
-		document.getElementById("output").innerHTML=AppMobi.toolkit.template("user_info",{userinfo:user});
+		document.getElementById("output").innerHTML=aUX.web.template("user_info",{userinfo:user});
 	</script>
 
 
-== AppMobi.toolkit.appMobiSelect
+== aUX.web.appMobiSelect
 
 Currently, there exists a bug in mobile webkit with -webkit-transform:translate being applied to an element that has &lt;select> elements in it.  The second the translate position is changed, 
 the active box for the select box changes. It could be above or below the actual select box, making the user experience a disaster.  What this does is replaces all select boxes with a custom widget
 that is similar to the android picker.  The old select is still there and backwards compatible with other libraries for getting/setting values.
 
-To use AppMobi.toolkit.appMobiSelect you must do the following
+To use aUX.web.appMobiSelect you must do the following
 
 1. Make sure your current select boxes are wrapped in a span tag
 
@@ -185,7 +185,7 @@ To use AppMobi.toolkit.appMobiSelect you must do the following
 
 2. On the document.load or appMobi.device.ready listener, you must create an object, then call getOldSelects on the elements (div/spans/document) you want.
 
-        var selectFixer = new AppMobi.toolkit.appMobiSelect();
+        var selectFixer = new aUX.web.appMobiSelect();
         selectFixer.getOldSelects("selectTest");
 
 	
@@ -195,12 +195,12 @@ boxes into the DOM.
 Currently, you can not theme this, but it will be added soon.
 	
 	
-== AppMobi.toolkit.appMobiPassword
+== aUX.web.appMobiPassword
 
 Currently, there exists a bug in mobile webkit with -webkit-transform:translate being applied to an element that has &lt;input type="password"> elements in it.  The second the translate position is changed, 
 the overlay for the password is in a different position, making it look like another input box appears.  What this does is replaces the password box with an input box that updates the content as it goes with an asterik to simulate a password box
 
-To use AppMobi.toolkit.appMobiPassword you must do the following
+To use aUX.web.appMobiPassword you must do the following
 
 1. Make sure your current password boxes are wrapped in a span tag
 
@@ -208,7 +208,7 @@ To use AppMobi.toolkit.appMobiPassword you must do the following
 
 2. On the document.load or appMobi.device.ready listener you must create an object and then call getOldPasswords on the elements (div/spans/document) you want.
 
-        var pwFixer = new AppMobi.toolkit.appMobiPassword();
+        var pwFixer = new aUX.web.appMobiPassword();
         pwFixer.getOldPasswords("selectTest");//element you want to replace the password boxes in
    
 getOldPasswords takes in the id of the element you want to search for password boxes in.  This will replace them with the new tool.
@@ -216,15 +216,15 @@ getOldPasswords takes in the id of the element you want to search for password b
 Currently, you can not theme the input boxes, but that will be added soon.
    
     
-== AppMobi.toolkit.css3animate
+== aUX.web.css3animate
 
 This is a library to help with css3 animations
 
-To use AppMobi.toolkit.css3animate you must
+To use aUX.web.css3animate you must
 
 1.  Call the function
 
-        AppMobi.toolkit.css3animate("element_id",options);
+        aUX.web.css3animate("element_id",options);
         
 There are additional configuration options that are passed in as an object parameter
 
@@ -245,25 +245,25 @@ There are additional configuration options that are passed in as an object param
 	   callback:function(){console.log("finished animation")}
 	}
 	
-    AppMobi.toolkit.css3animate("element_id",options);
+    aUX.web.css3animate("element_id",options);
 
 You can chain animations by passing in a animation in the callback function
 
-    AppMobi.toolkit.css3Animate("animate", {x : 20,	y : 30,	time : "300ms",	callback : function() {	AppMobi.toolkit.css3Animate("animate", {x : 20,	y : 30,time : "500ms",	previous : true,callback : function() {reset();	}});}});
+    aUX.web.css3Animate("animate", {x : 20,	y : 30,	time : "300ms",	callback : function() {	aUX.web.css3Animate("animate", {x : 20,	y : 30,time : "500ms",	previous : true,callback : function() {reset();	}});}});
 	
 	
-== AppMobi.toolkit.social
+== aUX.web.social
 * This will be released  with AppMobi 3.4.1
 This is a wrapper library for making oAuth requests using AppMobi.oauth functions.   Please see the AppMobi.oauth documentation for full details (coming in 3.4.1).
  
-To use AppMobi.toolkit.social you must do the following
+To use aUX.web.social you must do the following
 
 1. Register the oauth service in the Enterprise Control Panel
 
 2. Create an object for each service
 
         var serviceName="twitter";
-        var twitter= new AppMobi.toolkit.social(serviceName);
+        var twitter= new aUX.web.social(serviceName);
  
 3. Make the oAuth request for the service
 
@@ -281,16 +281,16 @@ Below is a sample of posting a status update to twitter
     twitter.makeRequest("https://api.twitter.com/1/statuses/update.json","set_update","POST",checkResult,"status=foobar"
 	
 
-== AppMobi.toolkit.shakeListener
+== aUX.web.shakeListener
 
-To use AppMobi.toolkit.shakeListener you must do the following
+To use aUX.web.shakeListener you must do the following
 
 1. Call the javascript function and pass in a callback function to be executed when a shake is detected
 
-        AppMobi.toolkit.shakeListener(function(){console.log("Shake Detected");});
+        aUX.web.shakeListener(function(){console.log("Shake Detected");});
 	
 An optional second parameter is threshold for declaring accelerometer movement as a shake.  The default is 5.  Lowering it will trigger the callback more, raising it will trigger it less.
 
-	AppMobi.toolkit.shakeListener(function(){console.log("Shake Detected");},10); //More shakes needed to trigger the callback
+	aUX.web.shakeListener(function(){console.log("Shake Detected");},10); //More shakes needed to trigger the callback
 
     

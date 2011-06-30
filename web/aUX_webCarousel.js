@@ -1,15 +1,18 @@
 /**
- * AppMobi.toolkit.carousel
- * @copyright 2011 - AppMobi
- * @author IDM
+ * aUX.web.carousel - a carousel library for AppMobi/css3
+ * 
+ * @copyright AppMobi 2011 - AppMobi
+ * 
+ * @todo - spacer css class name
  * 
  */
-if(!window.AppMobi)
-	AppMobi={};
-if (!AppMobi.toolkit)
-	AppMobi.toolkit = {};
 
-AppMobi.toolkit.carousel = (function() {
+if(!window.aUX)
+	aUX={};
+if (!aUX.web)
+	aUX.web = {};
+
+aUX.web.carousel = (function() {
 	var translateOpen = 'm11' in new WebKitCSSMatrix() ? "3d(" : "(";
 	var translateClose = 'm11' in new WebKitCSSMatrix() ? ",0)" : ")";
 

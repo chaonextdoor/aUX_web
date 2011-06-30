@@ -1,14 +1,16 @@
 /**
  * AppMobi.toolkit.swipe - a library to detect swipe events for AppMobi Apps
- * @copyright 2011 - AppMobi
- * @author IDM
+ * Copyright 2011 - AppMobi 
+ * Executes a callback function and passes in the direction return
+ * @string (left,right,up,down)
  */
-if(!window.AppMobi)
-	AppMobi={};
-if (!AppMobi.toolkit)
-	AppMobi.toolkit = {};
 
-AppMobi.toolkit.swipeListener = (function() {
+if(!window.aUX)
+	aUX={};
+if (!aUX.web)
+	aUX.web = {};
+
+aUX.web.swipeListener = (function() {
 	var swipeListener = function(elID, opts) {
 		var that = this;
 		this.el = document.getElementById(elID);

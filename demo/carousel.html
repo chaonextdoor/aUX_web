@@ -2,10 +2,7 @@
 <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 <title>Carousel</title>
 
-<script type="text/javascript" charset="utf-8"
-	src="http://localhost:58888/_appMobi/appmobi.js"></script>
-
-<script src="../web/appMobiCarousel.js"></script>
+<script src="../web/aUX_webCarousel.js"></script>
 <script type="text/javascript" src="touch.js"></script>
 <style type="text/css">
 * {
@@ -79,13 +76,13 @@ body {
 	window.document.addEventListener('touchmove', preventDefaultScroll, false);
 
 	function init() {
-		AppMobi.toolkit.carousel("carousel", {
+		aUX.web.carousel("carousel", {
 			pagingDiv : "carousel_dots",
 			totalPages : 2,
 			pagingCssName : "carousel_paging2",
 			pagingCssNameSelected : "carousel_paging2_selected"
 		});
-		AppMobi.toolkit.carousel("carousel_v", {
+		aUX.web.carousel("carousel_v", {
 			totalPages : 2,
 			vertical : true,
 			pagingCssName : "carousel_paging2",

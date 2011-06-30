@@ -31,15 +31,13 @@ body {
 	background: black;
 }
 </style>
-<script type="text/javascript" charset="utf-8"
-	src="http://localhost:58888/_appMobi/appmobi.js"></script>
+
+<script type="text/javascript" charset="utf-8" src="../web/aUX_webTemplate.js"></script>
 <script type="text/javascript" src="touch.js"></script>
-<script type="text/javascript" charset="utf-8" src="../web/appMobiTemplate.js"></script>
 <script type="text/javascript">
 	/* This function runs once the page is loaded, but appMobi is not yet active */
 	var init = function() {
-		document.getElementById("content").innerHTML = AppMobi.toolkit
-		.template("template",{numToCount:10});
+		document.getElementById("content").innerHTML = aUX.web.template("template",{numToCount:10});
 	};
 	window.addEventListener("load", init, false);
 

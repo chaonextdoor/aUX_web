@@ -27,11 +27,10 @@ body {
 </style>
 <script type="text/javascript" charset="utf-8"
 	src="http://localhost:58888/_appMobi/appmobi.js"></script>
-<script type="text/javascript" src="touch.js"></script>
-<script type="text/javascript" charset="utf-8" src="../appmobi/appmobiSocial.js"></script>
+<script type="text/javascript" charset="utf-8" src="../web/aUX_webSocial.js"></script>
 <script type="text/javascript">
 	var serviceName = "twitter";
-	var twitter = new AppMobi.toolkit.social(serviceName);
+	var twitter = new aUX.web.social(serviceName);
 	function runOauth() {
 		try {
 			document.getElementById("available").style.display = 'block';
@@ -91,12 +90,13 @@ body {
 		//Size the display to 768px by 1024px
 
 		AppMobi.display.useViewport(320, 480)
-		if (AppMobi.oauthAvailable)
+		//if (AppMobi.oauthAvailable)
 			runOauth();
 
 	};
 
 	document.addEventListener("appMobi.device.ready",onDeviceReady,false);
+	document.addEventListener("appMobi.oauth.setup",runOauth,false);
 </script>
 
 </head>

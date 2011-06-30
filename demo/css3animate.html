@@ -30,10 +30,10 @@ body {
 	background: black;
 }
 </style>
+
 <script type="text/javascript" charset="utf-8"
-	src="http://localhost:58888/_appMobi/appmobi.js"></script>
-<script type="text/javascript" charset="utf-8"
-	src="appMobiCss3animate.js"></script>
+	src="../web/aUX_webCss3animate.js"></script>
+	<script type="text/javascript" src="touch.js"></script>
 <script type="text/javascript">
 	/* This function runs once the page is loaded, but appMobi is not yet active */
 	var init = function() {
@@ -57,7 +57,7 @@ body {
 	document.addEventListener("appMobi.device.ready", onDeviceReady, false);
 
 	function moveOnce() {
-		AppMobi.toolkit.css3Animate("animate", {
+		aUX.web.css3Animate("animate", {
 			width : "100px",
 			height : "100px",
 			x : "20%",
@@ -70,7 +70,7 @@ body {
 		});
 	}
 	function reset() {
-		AppMobi.toolkit.css3Animate("animate", {
+		aUX.web.css3Animate("animate", {
 			y : 0,
 			opacity : 1,
 			width : "50px",
@@ -79,12 +79,12 @@ body {
 		});
 	}
 	function moveTwice() {
-		AppMobi.toolkit.css3Animate("animate", {
+		aUX.web.css3Animate("animate", {
 			x : 20,
 			y : 30,
 			time : "300ms",
 			callback : function() {
-				AppMobi.toolkit.css3Animate("animate", {
+				aUX.web.css3Animate("animate", {
 					x : 20,
 					y : 30,
 					time : "500ms",

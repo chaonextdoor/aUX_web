@@ -1,14 +1,14 @@
 /**
  * AppMobi.toolkit.template - a javascript template library Simple JavaScript
  * Templating from John Resig - http://ejohn.org/ - MIT Licensed
- * @author IDM
  */
-if(!window.AppMobi)
-	AppMobi={};
-if (!AppMobi.toolkit)
-	AppMobi.toolkit = {};
 
-AppMobi.toolkit.template = function(str, data) {
+if(!window.aUX)
+	aUX={};
+if (!aUX.web)
+	aUX.web = {};
+
+aUX.web.template = function(str, data) {
 	//If there's no data, let's pass an empty object so the user isn't forced to.
 	if (!data)
 		data = {};

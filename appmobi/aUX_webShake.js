@@ -1,13 +1,14 @@
 /**
- * AppMobi.toolkit.sshakeListener
- * @copyright 2011 - AppMobi
- * @author IDM
+ * aUX.web.sshakeListener - a library to detect shake events for AppMobi Apps 
+ & Copyright 2011 - AppMobi
  */
 
-if (!AppMobi.toolkit)
-	AppMobi.toolkit = {};
+if(!window.aUX)
+	aUX={};
+if (!aUX.web)
+	aUX.web = {};
 
-AppMobi.toolkit.shakeListener = function(callback, threshold) {
+aUX.web.shakeListener = function(callback, threshold) {
 	var accelCounter = 0;
 	var timer;
 	var prevX = 0;
