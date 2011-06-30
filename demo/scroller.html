@@ -44,14 +44,12 @@ body {
 	border-radius: 4px;
 }
 </style>
-<script type="text/javascript" charset="utf-8"
-	src="http://localhost:58888/_appMobi/appmobi.js"></script>
+<script type="text/javascript" charset="utf-8" src="../web/aUX_webScroll.js"></script>
 <script type="text/javascript" src="touch.js"></script>
-<script type="text/javascript" charset="utf-8" src="../web/appMobiScroll.js"></script>
 <script type="text/javascript">
 	/* This function runs once the page is loaded, but appMobi is not yet active */
 	var init = function() {
-		var myScroller = new AppMobi.toolkit.scroller("scroller", {
+		var myScroller = new aUX.web.scroller("scroller", {
 			scrollBars : true,
 			verticalScroll : true,
 			horizontalScroll : true,

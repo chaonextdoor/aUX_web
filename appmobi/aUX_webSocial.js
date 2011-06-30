@@ -1,15 +1,14 @@
 /**
- * AppMobi.toolkit.social - A wrapper library for oAuth requests 
+ * aUX.web.social - A wrapper library for oAuth requests 
  * Copyright 2011 - AppMobi
- * AppMobi Author: IDM
  */
 
-if(!window.AppMobi)
-	AppMobi={};
-if (!AppMobi.toolkit)
-	AppMobi.toolkit = {};
+if(!window.aUX)
+	aUX={};
+if (!aUX.web)
+	aUX.web = {};
 
-AppMobi.toolkit.social = (function() {
+aUX.web.social = (function() {
 	var social = function(serviceName) {
 		if (!this instanceof social) {
 			return new social(serviceName);
@@ -66,7 +65,6 @@ AppMobi.toolkit.social = (function() {
 				for ( var j in params) {
 					rqStr += j + " = " + params[j] + "\n";
 				}
-
 				AppMobi.oauth.getProtectedData(params);
 			} catch (e) {
 				alert("Error " + e.message);
@@ -95,7 +93,7 @@ AppMobi.toolkit.social = (function() {
 				var that = this;
 				if (cb) {
 					that.tmpCB = cb;
-					document.addEventListener("appMobi.oauth.unauthorize",
+					document.addEventListener("appMobi.oauth.unauthorize.service",
 							this.deAuthorizeCB, false);
 				}
 				AppMobi.oauth.unauthorizeService(this.serviceName);
@@ -113,7 +111,7 @@ AppMobi.toolkit.social = (function() {
 					delete this["tmpCB"];
 				}
 			}
-			document.removeEventListener("appMobi.oauth.unauthorize",this.deAuthorizeCB);
+			document.removeEventListener("appMobi.oauth.unauthorize.service",this.deAuthorizeCB);
 		}
 	};
 	return social;
