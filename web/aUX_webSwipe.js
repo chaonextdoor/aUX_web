@@ -13,7 +13,7 @@ if (!aUX.web)
 aUX.web.swipeListener = (function() {
 	var swipeListener = function(elID, opts) {
 		var that = this;
-		if(typeof(el)=="string")
+		if(typeof(el)=="string") //Check to see if it's an element or string being passed
 			this.el = document.getElementById(elID);
 		else
 			this.el=elID
