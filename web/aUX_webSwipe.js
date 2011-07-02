@@ -13,7 +13,10 @@ if (!aUX.web)
 aUX.web.swipeListener = (function() {
 	var swipeListener = function(elID, opts) {
 		var that = this;
-		this.el = document.getElementById(elID);
+		if(typeof(el)=="string")
+			this.el = document.getElementById(elID);
+		else
+			this.el=elID
 		if (!this.el) {
 			alert("Error adding swipe listener for " + elID);
 			return;
