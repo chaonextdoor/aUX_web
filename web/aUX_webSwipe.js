@@ -13,7 +13,7 @@ if (!aUX.web)
 aUX.web.swipeListener = (function() {
 	var swipeListener = function(elID, opts) {
 		var that = this;
-		if(typeof(el)=="string") //Check to see if it's an element or string being passed
+		if(typeof(elID)=="string")
 			this.el = document.getElementById(elID);
 		else
 			this.el=elID
@@ -21,9 +21,9 @@ aUX.web.swipeListener = (function() {
 			alert("Error adding swipe listener for " + elID);
 			return;
 		}
-		this.el.addEventListener('touchstart', function(e) {
-			that.touchStart(e);
-		}, false);
+		//this.el.addEventListener('touchstart', function(e) {
+		//	that.touchStart(e);
+		//}, false);
 		this.el.addEventListener('touchmove', function(e) {
 			that.touchMove(e);
 		}, false);
@@ -77,6 +77,8 @@ aUX.web.swipeListener = (function() {
 			}
 		},
 		touchMove : function(event) {
+		   if(this.movingElement==false)
+		      this.touchStart(event);
 			event.preventDefault();
 			if (event.touches.length > 1 || !this.movingElement) {
 				this.cancel();

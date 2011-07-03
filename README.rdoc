@@ -11,7 +11,7 @@ aUX.web.all.min.js contains all the toolkit functions
 
 The sources are in the web/ and appmobi/ folders.  You can find demos in the demo/ folder.
 
-== Mobile Web Libaries (appmobi.web.min.js)
+== Mobile Web Libaries (aUX_web.min.js)
 These libraries can be used in AppMobi or general mobile web development.
 
 aUX.web.scroller 
@@ -123,7 +123,7 @@ To use aUX.web.swipeListener you must do the following
 
 2. Call the javascript function to listen for the swipe event
 
-        var swipe=new aUX.web.swipeListener("document");
+        var swipe=new aUX.web.swipeListener(document); //string or element to listen on
 
 There are additional configuration options that are passed in as an object parameter
 
@@ -133,9 +133,9 @@ There are additional configuration options that are passed in as an object param
 		callback:null //callback function to execute.  It takes one parameter that has the swipe directions
 	}
 	
-    var swipeListener = new aUX.web.swipeListener("document",options);
+    var swipeListener = new aUX.web.swipeListener("myDiv",options);
 
-    var swipe = new aUX.web.swipeListener("document",{vthreshold:30,hthreshold:50,callBack:function(dir){console.log(dir)}});
+    var swipe = new aUX.web.swipeListener(document,{vthreshold:30,hthreshold:50,callBack:function(dir){console.log(dir)}});
    	
 	
 == aUX.web.template
