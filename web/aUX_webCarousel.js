@@ -13,6 +13,8 @@ if (!aUX.web)
 	aUX.web = {};
 
 aUX.web.carousel = (function() {
+	if(!window.WebKitCSSMatrix)
+	   return;
 	var translateOpen = 'm11' in new WebKitCSSMatrix() ? "3d(" : "(";
 	var translateClose = 'm11' in new WebKitCSSMatrix() ? ",0)" : ")";
 
@@ -168,12 +170,18 @@ aUX.web.carousel = (function() {
 				e.stopPropagation();
 				if (this["vertical"]) {
 					this.startY = e.touches[0].pageY;
-					this.cssMoveStart = new WebKitCSSMatrix(window
-							.getComputedStyle(this.el, null).webkitTransform).f;
+					try{
+					this.cssMoveStart = numOnly(new WebKitCSSMatrix(window
+							.getComputedStyle(this.el, null).webkitTransform).f);
+					}
+					catch(ex1){this.cssMoveStart=0;}
 				} else {
 					this.startX = e.touches[0].pageX;
-					this.cssMoveStart = new WebKitCSSMatrix(window
-							.getComputedStyle(this.el, null).webkitTransform).e;
+					try{
+					this.cssMoveStart = numOnly(new WebKitCSSMatrix(window
+							.getComputedStyle(this.el, null).webkitTransform).e);
+					}
+					catch(ex1){this.cssMoveStart=0;}
 				}
 			}
 		},
@@ -186,10 +194,10 @@ aUX.web.carousel = (function() {
 			e.preventDefault();
 			e.stopPropagation();
 			try {
-				var endPos = this["vertical"] ? new WebKitCSSMatrix(window
-						.getComputedStyle(this.el, null).webkitTransform).f
-						: new WebKitCSSMatrix(window.getComputedStyle(this.el,
-								null).webkitTransform).e;
+				var endPos = this["vertical"] ? numOnly(new WebKitCSSMatrix(window
+						.getComputedStyle(this.el, null).webkitTransform).f)
+						: numOnly(new WebKitCSSMatrix(window.getComputedStyle(this.el,
+								null).webkitTransform).e);
 				if (endPos > 0) {
 					this.moveCSS3(this.el, {
 						x : 0,
