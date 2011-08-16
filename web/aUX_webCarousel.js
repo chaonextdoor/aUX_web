@@ -170,7 +170,6 @@ aUX.web.carousel = (function() {
 				e.stopPropagation();
 				if (this["vertical"]) {
 					this.startY = e.touches[0].pageY;
-<<<<<<< HEAD
 					try{
 					this.cssMoveStart = numOnly(new WebKitCSSMatrix(window
 							.getComputedStyle(this.el, null).webkitTransform).f);
@@ -183,14 +182,6 @@ aUX.web.carousel = (function() {
 							.getComputedStyle(this.el, null).webkitTransform).e);
 					}
 					catch(ex1){this.cssMoveStart=0;}
-=======
-					this.cssMoveStart = numOnly(new WebKitCSSMatrix(window
-							.getComputedStyle(this.el, null).webkitTransform).f);
-				} else {
-					this.startX = e.touches[0].pageX;
-					this.cssMoveStart = numOnly(new WebKitCSSMatrix(window
-							.getComputedStyle(this.el, null).webkitTransform).e);
->>>>>>> 0346853156f0020909d9f0c8ef082a3bd6cfce8c
 				}
 			}
 		},
