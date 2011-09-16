@@ -88,6 +88,9 @@ aUX.web.css3Animate = (function() {
 			this.el.callback=options["callback"];
 			this.el.moving=true;
 		}
+		else {
+			this.el.callback=function(){}
+		}
 	};
 
 	function finishAnimation(event) {
@@ -96,6 +99,7 @@ aUX.web.css3Animate = (function() {
 		if (!event.target.moving)
 			return;
 		event.target.moving = false;
+		that.removeEventListener("webkitTransitionEnd",finishAnimation,true);
 		if (that.callback&&typeof(that.callback=="function")) {
 			that.callback();
 			that.callback="";

@@ -13,6 +13,8 @@ The sources are in the web/ and appmobi/ folders.  You can find demos in the dem
 
 == Mobile Web Libaries (aUX_web.min.js)
 These libraries can be used in AppMobi or general mobile web development.
+aUX.web.alphaTable
+* A CSS3 Alphabetical/scrolling table.  This creates a table that you can scroll, but have the alphabetical index for users to jump around with.
 
 aUX.web.scroller 
 * A CSS3 scrolling library.  This allows you to create a fixed height/width div and scroll veritical and/or horizontal.
@@ -50,6 +52,35 @@ aUX.web.shakeListener
 aUX.web.social (coming soon in 3.4.1)
 * A wrapper utility for making oAuth calls using AppMobi
 
+== aUX.web.alphaTable
+
+To use aUX.web.alphaTable, you must also include the aUX.web.scroller library.  You must do the following
+
+1. Create a aUX.web.scroller for your list.  See the instructions below.
+
+2. Create your list, broken up by divs/spans/anchors for each alphabet character (A-Z must be capitalized)
+
+        <div id="contacts_A">
+            <li>Joe Anderson</li>
+        </div>
+        <div id="contacts_B">
+            <li>Joe Bob</li>
+        </div>
+		.....
+		<div id="contacts_Z">
+		    <li>Joe Zepplin</li>
+		</div>
+3. Call the javascript function to create the object.  The first paramter is the ID for the scroller, the second is the scroller object.  The third is optional config parameters
+
+        var alphaTable = new aUX.web.alphaTable("contentDIV",scroller,{prefix:"contacts_",listCssClass:"cssClassName"});
+
+There are two optional parameters
+
+        var options{
+            prefix:"contacts_", //prefix for your divs
+            listCssClass:"listTable" //CSS class name to style the alphabet list.  Youc an position it, set the background color, etc.
+        }            
+        
 == aUX.web.scroller
 
 To use aUX.web.scroller you must do the following
@@ -57,16 +88,15 @@ To use aUX.web.scroller you must do the following
 1. Create an outer container div that has the height and width of the area you want to see visible
 
         <div id="my_div_container" style="width:100%;height:300px">
-		<!-- div from below goes here -->
-         </div>
+            <!-- div from below goes here -->
+        </div>
    
-
 2. Create a div with the content inside you want scrollable.
 
         <div id="my_div" >
-	    	<!-- content goes here -->
+            <!-- content goes here -->
         </div>
-	
+    
 3. Call the javascript function
 
         var scroller = new aUX.web.scroller("my_div");
@@ -74,14 +104,20 @@ To use aUX.web.scroller you must do the following
 There are additional configuration options that are passed in as an object parameter
 
     var options={
-	    verticalScroll:true, //vertical scrolling
-		horizontalScroll:false, //horizontal scrolling
-		scrollBars:true  //display scrollbars
-	}
-	
-	var scroller = new aUX.web.scroller("my_div",options);
+        verticalScroll:true, //vertical scrolling
+        horizontalScroll:false, //horizontal scrolling
+        scrollBars:true  //display scrollbars
+    }
+    
+    var scroller = new aUX.web.scroller("my_div",options);
 
-	
+There are additional functions for aUX.web.scroller
+
+1.  scrollTo
+
+    var scroller = new aUX.web.scroller("my_div");
+    scroller.scrollTo({x:0,y:-100}); //Pass in an object with X/Y properties that are negative to scroll to that position.
+    
 == aUX.web.carousel
 
 To use aUX.web.scroller you must do the following
@@ -89,31 +125,31 @@ To use aUX.web.scroller you must do the following
 1. Create a div with the content inside you want to page between.  You must set the height and width of this div, along with overflow:hidden
 
         <div id="my_div" style="width:768px;height:400px;overflow:hidden">
-	        <div style="float:left;width:766px;height:400;border:1px solid white;background:yellow;"></div>
+            <div style="float:left;width:766px;height:400;border:1px solid white;background:yellow;"></div>
             <div style="float:left;width:766px;height:400;border:1px solid white;background:green;"></div>
         </div>
-	
+    
 2. if you want the dots to show up for paging, create the div
 
         <div id="carousel_dots" style="text-align: center; margin-left: auto; margin-right: auto; clear: both;position:relative;top:-40px;z-index:200"></div>
-	
+    
 3. Call the javascript function to create the carousel
 
         var carousel = new aUX.web.carousel("my_div");
-	
+    
 There are additional configuration options that are passed in as an object parameter
 
-	var options={
-		totalPages:2, //number of pages to scroll through
-		vertical:false, // page up/down
-		horizontal:true, // page left/right
-		pagingDiv:null, // div to hold the dots for paging
-		pagingCssName:"carousel_paging", //classname for the paging dots
-		pagingCssNameSelected: "carousel_paging_selected" //classname for the selected page dots
-	}
+    var options={
+        totalPages:2, //number of pages to scroll through
+        vertical:false, // page up/down
+        horizontal:true, // page left/right
+        pagingDiv:null, // div to hold the dots for paging
+        pagingCssName:"carousel_paging", //classname for the paging dots
+        pagingCssNameSelected: "carousel_paging_selected" //classname for the selected page dots
+    }
 
-	var carousel = new aUX.web.carousel("my_div",options);
-	
+    var carousel = new aUX.web.carousel("my_div",options);
+    
 
 == aUX.web.swipeListener
 
@@ -128,16 +164,16 @@ To use aUX.web.swipeListener you must do the following
 There are additional configuration options that are passed in as an object parameter
 
     var options={
-	    vthreshold:50, //vertical pixel threshold
-		hthreshold:50, //horizontal pixel threshold
-		callback:null //callback function to execute.  It takes one parameter that has the swipe directions
-	}
-	
+        vthreshold:50, //vertical pixel threshold
+        hthreshold:50, //horizontal pixel threshold
+        callback:null //callback function to execute.  It takes one parameter that has the swipe directions
+    }
+    
     var swipeListener = new aUX.web.swipeListener("myDiv",options);
 
     var swipe = new aUX.web.swipeListener(document,{vthreshold:30,hthreshold:50,callBack:function(dir){console.log(dir)}});
-   	
-	
+       
+    
 == aUX.web.template
 
 The template parsing library is John Resig's micro templating, with some fixes and enhancements.  http://ejohn.org/blog/javascript-micro-templating/
@@ -146,29 +182,29 @@ To use aUX.web.template you must do the following
 1. Create your template.  The easiest way is to create &lt;script> tags with the content type of "text/html" and set an id
 
         <script type='text/html' id='user_info'>
-	    Name <%=userinfo.name%><br>
-		Company <%=userinfo.company%><br>
-		Cool <%=userinfo.awesome%>
-	    </script>
+        Name <%=userinfo.name%><br>
+        Company <%=userinfo.company%><br>
+        Cool <%=userinfo.awesome%>
+        </script>
 2. To process the template you call a javascript function with the id of the template, and optional data to pass in
 
         document.getElementById('output').innerHTML=aUX.web.template("template");
-	
+    
 You can pass in an optional object parameter that provides data to be used within the template.  Below is a sample that could display user information based on a user object
 
     <script type='text/html' id='user_info'>
-	    Name <%=userinfo.name%><br>
-		Company <%=userinfo.company%><br>
-		Cool <%=userinfo.awesome%>
-	</script>
+        Name <%=userinfo.name%><br>
+        Company <%=userinfo.company%><br>
+        Cool <%=userinfo.awesome%>
+    </script>
     <script type='text/javascript'>
-	    var user={
-		   name:"Joe Programmer",
-		   company:"appMobi",
-		   awesome:"of course"
-		}
-		document.getElementById("output").innerHTML=aUX.web.template("user_info",{userinfo:user});
-	</script>
+        var user={
+           name:"Joe Programmer",
+           company:"appMobi",
+           awesome:"of course"
+        }
+        document.getElementById("output").innerHTML=aUX.web.template("user_info",{userinfo:user});
+    </script>
 
 
 == aUX.web.appMobiSelect
@@ -188,13 +224,13 @@ To use aUX.web.appMobiSelect you must do the following
         var selectFixer = new aUX.web.appMobiSelect();
         selectFixer.getOldSelects("selectTest");
 
-	
+    
 getOldSelects takes in the id of the element you want to search for select tags in.  Ideally, you would call it on all the divs that have select boxes in it.  There are issues with Google Maps, and other libraries, that inject their own select
 boxes into the DOM.
-	
+    
 Currently, you can not theme this, but it will be added soon.
-	
-	
+    
+    
 == aUX.web.appMobiPassword
 
 Currently, there exists a bug in mobile webkit with -webkit-transform:translate being applied to an element that has &lt;input type="password"> elements in it.  The second the translate position is changed, 
@@ -213,7 +249,11 @@ To use aUX.web.appMobiPassword you must do the following
    
 getOldPasswords takes in the id of the element you want to search for password boxes in.  This will replace them with the new tool.
  
-Currently, you can not theme the input boxes, but that will be added soon.
+There is a function that allows you to change the password box to "show" or "hide" the value.  The first parameter is 1 or 0 to show/hide the password.  The second is
+the id of the password field.
+
+    var pwFixer = new aUX.web.appMobiPassword();
+    pwFixer.changePasswordVisiblity(1,"one"); // 
    
     
 == aUX.web.css3animate
@@ -229,29 +269,29 @@ To use aUX.web.css3animate you must
 There are additional configuration options that are passed in as an object parameter
 
     var options={
-	   x:20, //x axis move. this can be a number (40), percent (50%), or pixels (40px) - if it's a number, px is added to it.
-	   y:20, //y axis move
-	   opacity:.5, //opacity to change to
-	   width:"100px", //style.width to change to
-	   height:"100px", //style.height to change to
-	   origin:"50% 50%", //offset to start the animation from default is 0 0
-	   rotateX:"50deg", //rotate along the x-axis
-	   rotateY:"50deg", //rotate along the y-axis
-	   skewX:"50deg", //skew along the x-axis
-	   skewY:"50deg", //skew along the y-axis
-	   time:"300ms", //time for transition
-	   timingFunction:"linear", //timing function for animation
-	   previous:false // move from previous position - not tested with animation by percentages
-	   callback:function(){console.log("finished animation")}
-	}
-	
+       x:20, //x axis move. this can be a number (40), percent (50%), or pixels (40px) - if it's a number, px is added to it.
+       y:20, //y axis move
+       opacity:.5, //opacity to change to
+       width:"100px", //style.width to change to
+       height:"100px", //style.height to change to
+       origin:"50% 50%", //offset to start the animation from default is 0 0
+       rotateX:"50deg", //rotate along the x-axis
+       rotateY:"50deg", //rotate along the y-axis
+       skewX:"50deg", //skew along the x-axis
+       skewY:"50deg", //skew along the y-axis
+       time:"300ms", //time for transition
+       timingFunction:"linear", //timing function for animation
+       previous:false // move from previous position - not tested with animation by percentages
+       callback:function(){console.log("finished animation")}
+    }
+    
     aUX.web.css3animate("element_id",options);
 
 You can chain animations by passing in a animation in the callback function
 
-    aUX.web.css3Animate("animate", {x : 20,	y : 30,	time : "300ms",	callback : function() {	aUX.web.css3Animate("animate", {x : 20,	y : 30,time : "500ms",	previous : true,callback : function() {reset();	}});}});
-	
-	
+    aUX.web.css3Animate("animate", {x : 20,    y : 30,    time : "300ms",    callback : function() {    aUX.web.css3Animate("animate", {x : 20,    y : 30,time : "500ms",    previous : true,callback : function() {reset();    }});}});
+    
+    
 == aUX.web.social
 * This will be released  with AppMobi 3.4.1
 This is a wrapper library for making oAuth requests using AppMobi.oauth functions.   Please see the AppMobi.oauth documentation for full details (coming in 3.4.1).
@@ -268,7 +308,7 @@ To use aUX.web.social you must do the following
 3. Make the oAuth request for the service
 
         twitter.makeRequest("https://api.twitter.com/1/statuses/user_timeline.json","get_timeline","GET",printTimeline);
-	
+    
 makeRequest is the main function you will interact with.  It takes in the following parameters
 1. API request url
 2. Service id - this should be unique per request url
@@ -279,7 +319,7 @@ makeRequest is the main function you will interact with.  It takes in the follow
 Below is a sample of posting a status update to twitter
 
     twitter.makeRequest("https://api.twitter.com/1/statuses/update.json","set_update","POST",checkResult,"status=foobar"
-	
+    
 
 == aUX.web.shakeListener
 
@@ -288,9 +328,9 @@ To use aUX.web.shakeListener you must do the following
 1. Call the javascript function and pass in a callback function to be executed when a shake is detected
 
         aUX.web.shakeListener(function(){console.log("Shake Detected");});
-	
+    
 An optional second parameter is threshold for declaring accelerometer movement as a shake.  The default is 5.  Lowering it will trigger the callback more, raising it will trigger it less.
 
-	aUX.web.shakeListener(function(){console.log("Shake Detected");},10); //More shakes needed to trigger the callback
+    aUX.web.shakeListener(function(){console.log("Shake Detected");},10); //More shakes needed to trigger the callback
 
     
