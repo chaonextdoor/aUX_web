@@ -58,7 +58,7 @@ To use aUX.web.alphaTable, you must also include the aUX.web.scroller library.  
 
 1. Create a aUX.web.scroller for your list.  See the instructions below.
 
-2. Create your list, broken up by divs/spans/anchors for each alphabet character (A-Z must be capitalized)
+2. Create your list, broken up by divs/spans/anchors for each alphabet.
 
         <div id="contacts_A">
             <li>Joe Anderson</li>
@@ -66,10 +66,6 @@ To use aUX.web.alphaTable, you must also include the aUX.web.scroller library.  
         <div id="contacts_B">
             <li>Joe Bob</li>
         </div>
-		.....
-		<div id="contacts_Z">
-		    <li>Joe Zepplin</li>
-		</div>
 3. Call the javascript function to create the object.  The first paramter is the ID for the scroller, the second is the scroller object.  The third is optional config parameters
 
         var alphaTable = new aUX.web.alphaTable("contentDIV",scroller,{prefix:"contacts_",listCssClass:"cssClassName"});
@@ -111,12 +107,9 @@ There are additional configuration options that are passed in as an object param
     
     var scroller = new aUX.web.scroller("my_div",options);
 
-There are additional functions for aUX.web.scroller
+You can also have it scroll to a specific position
 
-1.  scrollTo
-
-    var scroller = new aUX.web.scroller("my_div");
-    scroller.scrollTo({x:0,y:-100}); //Pass in an object with X/Y properties that are negative to scroll to that position.
+    scroller.scrollTo({x:-100,y:-200});
     
 == aUX.web.carousel
 
@@ -249,11 +242,7 @@ To use aUX.web.appMobiPassword you must do the following
    
 getOldPasswords takes in the id of the element you want to search for password boxes in.  This will replace them with the new tool.
  
-There is a function that allows you to change the password box to "show" or "hide" the value.  The first parameter is 1 or 0 to show/hide the password.  The second is
-the id of the password field.
-
-    var pwFixer = new aUX.web.appMobiPassword();
-    pwFixer.changePasswordVisiblity(1,"one"); // 
+Currently, you can not theme the input boxes, but that will be added soon.
    
     
 == aUX.web.css3animate
