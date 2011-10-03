@@ -1,0 +1,114 @@
+<!DOCTYPE html><!--HTML5 doctype-->
+<html>
+<head>
+<title>List Control</title>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8"> 
+<style type="text/css">
+    /* Prevent copy paste for all elements except text fields */
+    *  { -webkit-user-select:none; -webkit-tap-highlight-color:rgba(255, 255, 255, 0); }
+    input, textarea  { -webkit-user-select:text; }
+    
+    /* Set up the page with a default background image */
+    body {
+        background-color:#fff;
+        color:#000;
+        font-family:Arial;
+        font-size:22pt;
+        margin:0px;padding:0px;
+        background-image:url('images/background.jpg');
+    }
+	.tableListContainer {
+	position:absolute;top:10px;right:0px;width:20px;font-size:8pt;font-weight:bold;color:#000;opacity:.5;border-radius:5px;text-align:center;z-index:9999;border:1px solid black;background:#666;padding-top:5px;padding-bottom:5px;
+	}
+</style>
+<script type="text/javascript" charset="utf-8" src="http://localhost:58888/_appMobi/appmobi.js"></script> 
+<script type="text/javascript" charset="utf-8" src="../web/aUX_webScroll.js"></script>  <!-- !!! This is the scrolling library -->
+<script type="text/javascript" charset="utf-8" src="../web/aUX_webAlphaTable.js"></script>  <!-- !!! This is the webListTable library -->
+<script type="text/javascript">
+
+/* This function runs once the page is loaded, but appMobi is not yet active */
+var init = function(){
+};
+window.addEventListener("load",init,false);  
+
+/* This code prevents users from dragging the page */
+var preventDefaultScroll = function(event) {
+    event.preventDefault();
+    window.scroll(0,0);
+    return false;
+};
+document.addEventListener('touchmove', preventDefaultScroll, false);
+
+/* This code is used to run as soon as appMobi activates */
+var onDeviceReady=function(){
+    //Size the display to 768px by 1024px
+   //AppMobi.display.useViewport(768,1024);
+   AppMobi.display.useViewport(320,480);
+	
+	//hide splash screen
+	AppMobi.device.hideSplashScreen();	
+	
+	/***** !!! This stuff is needed for the list control */
+	objListControl = new aUX.web.scroller("contentDIV");  
+	listTable = new aUX.web.alphaTable("contentDIV",objListControl,{listCssClass:"tableListContainer",prefix:"itm_anchor_"});
+	/***** !!! END of onDeviceReady stuff */
+};
+document.addEventListener("appMobi.device.ready",onDeviceReady,false);    
+</script>
+
+<script type="text/javascript">
+
+</script>
+
+
+</head>
+<body>
+
+<!-- !!! This DIV will encompass the HTML needed for the list control.  You can position it at will using the style on this DIV.    -->
+<div id="listControl" style="position:absolute;top:20px;left:0px;">
+	<div id="contentDIV_container" style="width:100%;height:400px; background-color:white;overflow:hidden;">
+		<div id="contentDIV" >
+			<div style="background-color:blue;" id="itm_anchor_A">A</div> 
+			
+			<li id="item1">These are all</li>
+			<div id="item2">sample entries that</div>
+			<div id="item3">could be DIVs or</div>
+			
+			<div style="background-color:blue;" id="itm_anchor_B">B</div> 
+			
+			<div id="item4">any sort of styled</div>
+			<div id="item5">entries you might wish</div>
+			<div id="item6">that way you don't have to</div>
+			<div id="item7">deal with all the crazy</div>
+			<div id="item8">CSS that is in iScroll.js</div>
+			
+			<div style="background-color:blue;" id="itm_anchor_C">C</div> 
+			<li id="testItem1"/>nec tincidunt lacus suscipit a
+			<li id="testItem2"/>Morbi mollis dui vel urna 
+			<li id="testItem3"/>facilisis ut condimentum 
+			<li id="testItem4"/>mi ullamcorper
+			<div style="background-color:blue;" id="itm_anchor_D">D</div> 
+			<li id="testItem5"/>Sed rhoncus mollis est
+			<li id="testItem6"/>vitae vestibulum massa fringilla id
+			<li id="testItem7"/>Vestibulum rhoncus lorem nec 
+			<li id="testItem8"/>Aenean volutpat nisi quis 
+			<div style="background-color:blue;" id="itm_anchor_E">E</div> 
+			<li id="testItem9"/>Pellentesque porttitor ornare
+			<li id="testItem10"/>Aliquam luctus dui
+			<li id="testItem11"/>Cras facilisis arcu ac 
+			<li id="testItem12"/>Sed id leo quis massa 
+			<li id="testItem13"/>Duis vitae elit vel eros 
+			<div style="background-color:blue;" id="itm_anchor_F">F</div> 
+			<li id="testItem14"/>Morbi sed purus enim
+			<li id="testItem15"/>Nunc volutpat odio vulputate 
+			<li id="testItem16"/>Fusce id ligula erat
+			<li id="testItem17"/>Vestibulum adipiscing 
+			<div style="background-color:blue;" id="itm_anchor_G">G</div> 
+			<li id="testItem18"/>Cras eu augue nec est 
+			<li id="testItem19"/>Cras sit amet neque 
+			<li id="testItem20"/>Mauris bibendum condimentum 
+		</div>
+	</div>
+
+</body>
+</html>
