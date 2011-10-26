@@ -44,6 +44,8 @@ body {
 	border-radius: 4px;
 }
 </style>
+<script type="text/javascript" charset="utf-8"
+	src="http://localhost:58888/_appMobi/appmobi.js"></script>
 <script type="text/javascript" charset="utf-8" src="../web/aUX_webScroll.js"></script>
 <script type="text/javascript">
 	/* This function runs once the page is loaded, but appMobi is not yet active */
@@ -53,7 +55,9 @@ body {
 			verticalScroll : true,
 			horizontalScroll : true,
 			vScrollCSS : "scrollBarV",
-			hScrollCSS : "scrollBarH"
+			hScrollCSS : "scrollBarH",
+			refresh:true,
+			refreshFunction:updateMessage
 		});
 	};
 	window.addEventListener("load", init, false);
@@ -72,6 +76,11 @@ body {
 		AppMobi.display.useViewport(320, 480);
 	};
 	document.addEventListener("appMobi.device.ready", onDeviceReady, false);
+	
+	function updateMessage(){
+		document.getElementById("message").innerHTML="";
+		window.setTimeout(function(){document.getElementById("message").innerHTML="content refreshed";},1000);
+	}
 </script>
 
 </head>
@@ -108,5 +117,7 @@ body {
 			aliquet. Sed leo nisl, iaculis non pellentesque nec, scelerisque vel
 			felis</div>
 	</div>
+	<hr>
+	<div id="message"></div>
 </body>
 </html>
